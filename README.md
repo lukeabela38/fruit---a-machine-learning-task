@@ -65,6 +65,8 @@ In summary, this code performs data analysis and classification tasks on a datas
 python main.py
 ```
 
+Alternatively try the notebook!
+
 ### Where to See Results
 
 You can go over to the artifacts folder, where you will find scatter plots (the naming convention is self explanatory), a correlation matrix (not required for this task), and confuison matrices. The confusion matrices follow the naming pattern:

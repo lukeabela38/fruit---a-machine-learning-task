@@ -4,10 +4,7 @@ from sklearn import metrics
 class MLTrainer():
     def __init__(self, x_train, y_train, x_test, y_test, training_algorithm, normalise = False, **kwargs):
         self.normalise = normalise
-        if self.normalise == True:
-            y_train = self.normalise_data(y_train)
-            y_test = self.normalise_data(y_test)
-        else:
+        if self.normalise == False:
             y_train = self.one_hot_encoding(y_train)
             y_test = self.one_hot_encoding(y_test)
             
@@ -29,9 +26,7 @@ class MLTrainer():
     def classifier_pred(self):
         y_pred = self.clf.predict(self.x_test)
 
-        if self.normalise == True:
-            y_pred = self.normalise_data(y_pred)
-        else:
+        if self.normalise == False:
             y_pred = self.one_hot_encoding(y_pred)
         self.y_pred = y_pred
 
@@ -44,16 +39,12 @@ class MLTrainer():
         self.results = results
     
     def get_classifier_pred(self):
+        if self.normalise == False:
+            return self.y_pred + 1
         return self.y_pred
     
     def get_classifier_results(self):
         return self.results
-    
-    @staticmethod
-    def normalise_data(y):
-        if np.max(y) >= 1:
-            return y/np.max(y)
-        return y
 
     @staticmethod
     def one_hot_encoding(y):

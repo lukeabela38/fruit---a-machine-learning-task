@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from scipy import stats
 from sklearn.model_selection import train_test_split
 
@@ -33,4 +34,4 @@ def preprocess_binarisation_data(y: list, fruit_to_classify: int):
     for i in range(len(y)):
         if y[i] != fruit_to_classify:
             y[i] = 0
-    return y
+    return y/np.max(y)

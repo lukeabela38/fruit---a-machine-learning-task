@@ -3,6 +3,15 @@ import seaborn as sns
 import numpy as np
 from sklearn import metrics
 
+def roc_curve(y_true, y_pred, label=None):
+
+    fpr, tpr, thresholds = metrics.roc_curve(y_true, y_pred)
+    plt.plot(fpr, tpr)
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.savefig(f"artifacts/roc_curve/{label}_fpr_tpr.png")
+    plt.close()
+
 # Create a correlation matrix to help us interpret our data
 def correlation_matrix(df_to_correlate):
 

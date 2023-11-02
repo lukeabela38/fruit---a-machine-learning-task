@@ -18,7 +18,7 @@ def main() -> int:
 
     correlation_matrix(df)
     scatter_plot(df, Data.variables.value)
-
+3
     ## Task 2
     for fruit_to_classify in list(Fruit.fruit_index.value.values()):
         processed_df = preprocess_data(df, Data.variables.value)
@@ -27,12 +27,14 @@ def main() -> int:
         y_train = preprocess_binarisation_data(y_train, fruit_to_classify)
         y_test = preprocess_binarisation_data(y_test, fruit_to_classify)
 
-        fruit_classifier = MLTrainer(x_train=x_train,
-                                     y_train=y_train,
-                                     x_test=x_test,
-                                     y_test=y_test,
-                                     training_algorithm=TrainingAlgorithms.algorithms.value[algorithm_selection],
-                                     normalise=True,)
+        fruit_classifier = MLTrainer(
+            x_train=x_train,
+            y_train=y_train,
+            x_test=x_test,
+            y_test=y_test,
+            training_algorithm=TrainingAlgorithms.algorithms.value[algorithm_selection],
+            normalise=True,
+            )
         
         y_pred = fruit_classifier.get_classifier_pred()
         binary_classifier_results = fruit_classifier.get_classifier_results()
@@ -43,12 +45,14 @@ def main() -> int:
 
     ## Task 3
     x_train, y_train, x_test, y_test = split_data(processed_df)
-    fruit_classifier = MLTrainer(x_train=x_train,
-                                    y_train=y_train,
-                                    x_test=x_test,
-                                    y_test=y_test,
-                                    training_algorithm=TrainingAlgorithms.algorithms.value[algorithm_selection],
-                                    normalise=False,)
+    fruit_classifier = MLTrainer(
+        x_train=x_train,
+        y_train=y_train,
+        x_test=x_test,
+        y_test=y_test,
+        training_algorithm=TrainingAlgorithms.algorithms.value[algorithm_selection],
+        normalise=False,
+        )
     
     y_pred = np.array(fruit_classifier.get_classifier_pred())
     multi_classifier_results = fruit_classifier.get_classifier_results()
